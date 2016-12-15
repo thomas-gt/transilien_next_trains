@@ -1,0 +1,19 @@
+
+<img class="logo" src="/assets/transilien_next_trains/Logo_SNCF_Transilien.svg" height="32" width="165">
+<img class="logo-line" src="/assets/transilien_next_trains/Logo_Transilien.svg" height="32" width="32">
+<p class="title-transilien yellow-text" data-bind="title"></p>
+
+<ul>
+  <li class="transilien" data-foreach-item="items">
+    <span style="width:  10px;" class="transilien-center"></span>    
+    <span style="width:  60px;" class="transilien-center" data-bind="item.code"></span>
+    <span style="width:  35px;" class="transilien-center yellow-text" data-bind="item.time"></span>
+    <span style="width:  30px;" class="transilien-left small-text" data-bind="item.time_type"></span> 
+    <span style="width: 250px;" class="transilien-left" data-bind="item.destination"></span>
+    <span style="width: 170px;" class="transilien-center" data-bind="item.state | raw"></span>
+  </li>
+</ul>
+
+<p class="more-info-transilien yellow-text" data-bind="moreinfo"></p>
+<p class="updated-at-transilien yellow-text" data-bind="updatedAtMessage"></p>
+
