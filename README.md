@@ -38,6 +38,8 @@ Directory tree should be like this :
 ```
 .
 |-- README.md
+|-- CHANGELOG
+|-- LICENSE
 |-- assets
 |   `-- images
 |       `-- transilien_next_trains
