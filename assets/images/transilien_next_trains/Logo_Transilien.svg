@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200.00002"
+   id="svg2484"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   version="1.0"
+   sodipodi:docname="Logo_train_transilien.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs2486" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="138.29602"
+     inkscape:cy="152.86458"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="750"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8" />
+  <metadata
+     id="metadata2489">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(1125.7177,-818.59852)">
+    <g
+       id="g2827"
+       transform="matrix(0.6451613,0,0,0.6451613,-399.44819,361.43817)">
+      <g
+         style="stroke:#0062ac;stroke-opacity:1"
+         inkscape:label="Calque 1"
+         id="g2757"
+         transform="translate(-960.90538,545.52209)">
+        <g
+           style="stroke:#0062ac;stroke-opacity:1"
+           id="g2656">
+          <g
+             style="fill:#ffffff;stroke:#0062ac;stroke-opacity:1"
+             transform="translate(346.23962,22.336208)"
+             id="g2840">
+            <g
+               transform="translate(-597.84164,-361.66719)"
+               id="g2639"
+               inkscape:label="Calque 1"
+               style="fill:#ffffff;stroke:#0062ac;stroke-opacity:1">
+              <g
+                 id="g2628"
+                 style="fill:#ffffff;stroke:#0062ac;stroke-opacity:1">
+                <g
+                   id="g6673"
+                   transform="matrix(1.0136364,0,0,1.0136364,-6.3061891,-6.3640296)"
+                   style="fill:#ffffff;stroke:#0062ac;stroke-opacity:1">
+                  <rect
+                     ry="41.278507"
+                     y="513.19971"
+                     x="103.11621"
+                     height="283.28415"
+                     width="283.28412"
+                     id="rect5674"
+                     style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#0062ac;stroke-width:22.54545593;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <path
+         sodipodi:nodetypes="cssscccscccsssssssscccccscccccssssccsssccssssssssc"
+         style="fill:#0062ac;fill-opacity:1"
+         d="M -1046.3517,965.85513 C -1045.9388,965.16763 -1038.6555,954.32693 -1030.1665,941.76469 C -1021.6776,929.20249 -1014.6763,918.22589 -1014.6082,917.37229 C -1014.5305,916.39759 -1016.0148,915.30119 -1018.599,914.42449 C -1024.5575,912.40319 -1030.4501,906.89329 -1033.6734,900.32929 L -1036.4844,894.60509 L -1036.4844,837.60509 C -1036.4844,781.87179 -1036.4379,780.50509 -1034.3926,776.10509 C -1031.3516,769.56319 -1027.6266,765.60399 -1021.7646,762.68279 L -1016.5917,760.10509 L -971.65412,760.10509 C -940.10352,760.10509 -925.54712,760.45539 -922.79122,761.28109 C -917.82162,762.76999 -910.55982,769.11669 -907.69262,774.47689 C -905.48662,778.60099 -905.48442,778.66389 -905.48442,837.60509 C -905.48442,896.54629 -905.48662,896.60919 -907.69262,900.73329 C -910.54222,906.06069 -917.74492,912.37589 -922.91872,914.08339 C -925.49912,914.93499 -926.98442,916.03099 -926.98442,917.08349 C -926.98442,917.99559 -919.78442,929.36889 -910.98442,942.35749 C -902.18442,955.34613 -894.98442,966.24533 -894.98442,966.57803 C -894.98442,966.91073 -898.87612,967.05293 -903.63252,966.89403 L -912.28072,966.60513 L -923.90042,949.60513 L -935.52012,932.60509 L -969.00232,932.32579 C -987.41742,932.17229 -1003.3957,932.26789 -1004.5096,932.53849 C -1005.7575,932.84159 -1010.9389,939.56429 -1018.0096,950.05443 L -1029.4844,967.07843 L -1038.2934,967.09173 C -1045.0769,967.10203 -1046.9298,966.81773 -1046.3517,965.85513 z M -1003.0539,877.64099 C -1001.4967,876.83569 -998.99592,874.71899 -997.49662,872.93719 C -995.08132,870.06679 -994.82222,869.07489 -995.22342,864.23649 C -995.61352,859.53199 -996.17122,858.32199 -999.24972,855.50079 C -1005.9704,849.34169 -1014.6603,850.44249 -1019.8103,858.10509 C -1027.0452,868.86979 -1014.4619,883.54029 -1003.0539,877.64099 z M -927.26752,877.43509 C -920.32652,874.14139 -917.66732,866.45729 -921.05002,859.46949 C -925.06882,851.16789 -935.00242,848.88359 -941.88822,854.67759 C -949.52442,861.10309 -947.70642,873.70529 -938.56922,877.68369 C -934.41422,879.49279 -931.46702,879.42799 -927.26752,877.43509 z M -928.00432,830.35349 C -926.09032,829.39189 -923.50282,827.07599 -922.25432,825.20719 C -920.16212,822.07529 -919.98442,820.70429 -919.98442,807.69159 C -919.98442,790.93749 -921.01512,787.95439 -928.05842,784.32329 C -932.47762,782.04499 -932.54552,782.04199 -972.16262,782.32329 C -1010.4479,782.59519 -1011.9376,782.67749 -1014.6008,784.66689 C -1020.8851,789.36129 -1021.4586,791.05899 -1021.7822,805.92439 C -1022.0575,818.56659 -1021.9056,819.94109 -1019.7822,824.03109 C -1015.5426,832.19729 -1016.0985,832.10529 -971.00002,832.10349 C -935.37502,832.10209 -931.14182,831.92979 -928.00432,830.35349 z"
+         id="path2772" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2599"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   width="110"
+   height="110.00001"
+   version="1.0"
+   sodipodi:docname="Logo_Paris_Transilien_ligneK.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <metadata
+     id="metadata2604">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs2602">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective2606" />
+    <inkscape:perspective
+       id="perspective2393"
+       inkscape:persp3d-origin="55 : 36.666669 : 1"
+       inkscape:vp_z="110 : 55.000004 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 55.000004 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3070"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     inkscape:window-height="750"
+     inkscape:window-width="1280"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     guidetolerance="10.0"
+     gridtolerance="10.0"
+     objecttolerance="10.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     showgrid="false"
+     inkscape:zoom="2.1388889"
+     inkscape:cx="-3.6589832"
+     inkscape:cy="68.315364"
+     inkscape:window-x="227"
+     inkscape:window-y="20"
+     inkscape:current-layer="svg2599" />
+  <rect
+     style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#c3a500;stroke-width:8.10909080999999787;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     id="rect5674"
+     width="101.89091"
+     height="101.89091"
+     x="4.0545483"
+     y="4.0545502"
+     ry="14.846948" />
+  <path
+     style="font-size:75px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#c3a500;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Myriad Pro;-inkscape-font-specification:Myriad Pro Bold"
+     d="M 34.300269,80.274673 L 45.625123,80.274673 L 45.625123,63.774886 L 49.975067,58.449954 L 62.349907,80.274673 L 75.699736,80.274673 L 58.074962,51.250047 L 74.799747,29.725324 L 60.774928,29.725324 L 49.300075,46.525108 C 48.734438,47.422004 48.159446,48.328242 47.575098,49.243823 C 46.990713,50.159466 46.415721,51.103203 45.85012,52.075037 L 45.625123,52.075037 L 45.625123,29.725324 L 34.300269,29.725324 L 34.300269,80.274673 z"
+     id="text3076" />
+</svg>
