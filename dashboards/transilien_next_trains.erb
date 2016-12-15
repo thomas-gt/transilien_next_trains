@@ -1,0 +1,20 @@
+<script type='text/javascript'>
+$(function() {
+  // For 1920x1080
+  Dashing.widget_base_dimensions = [370, 340]
+  Dashing.numColumns = 5
+});
+</script>
+
+
+<% content_for :title do %>Dashboard<% end %>
+<div class="gridster">
+  <ul>
+    <li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+       <div data-id="transilien_next_trains" data-view="TransilienNextTrains"  data-unordered="true" data-title="Next Train Departures - Paris Saint-Lazare" data-moreinfo="(R)eal Time - (T)imeTable" style="background-color: #0C5DA5">
+       </div>
+       <i class="fa fa-subway icon-background-transilien"></i>     
+    </li>
+
+  </ul>
+</div>
