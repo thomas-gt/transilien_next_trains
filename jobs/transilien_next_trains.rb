@@ -1,0 +1,84 @@
+# encoding: UTF-8 
+
+require 'open-uri' 
+require 'nokogiri'  
+
+###############################################################################
+## Transilien Next Trains is a widget for the awesome Dashing (deprecated) or
+## Smashing (active fork) projects.
+## It displays the next train departures and status for your favorite train
+## station of Transilien, the main suburban railway network of Paris. 
+## This widget relies on the SNCF Open Data Transilien API.
+## https://framagit.org/tg/
+## Licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0. 
+###############################################################################
+
+# API Credentials
+API_USERNAME=""
+API_PASSWORD=""
+
+# Mandatory. Example : "Paris Saint-Lazare"
+Departure_Station="87384008" 
+
+# Optional. Leave blank to get departures to all Destinations :
+Arrival_Station=""
+
+# Matching table between station codes and station names : for good display of journey on widget
+
+stations = { "" => "All Destinations", "87545269" => "Ablon", "87386052" => "Achères Grand Cormier", "87381657" => "Achères Ville", "87271460" => "Aéroport Ch. de Gaulle 1", "87001479" => "Aéroport Ch. de Gaulle 2 TGV", "87381491" => "Andrésy", "87543090" => "Angerville", "87381848" => "Argenteuil", "87545467" => "Arpajon", "87381137" => "Asnières sur Seine", "87545251" => "Athis Mons", "87386730" => "Aubergenville Elisabethville", "87271411" => "Aulnay sous Bois", "87276543" => "Auvers sur Oise", "87543207" => "Avenue du Pdt Kennedy", "87381038" => "Avenue Foch", "87381046" => "Avenue Henri Martin", "87684191" => "Bagneaux sur Loing", "87681437" => "Ballancourt", "87382002" => "Bécon les Bruyères", "87393116" => "Bellevue", "87276550" => "Belloy Saint-Martin", "87276642" => "Bessancourt", "87393363" => "Beynes", "87328328" => "Bibliothèque François Mitterrand", "87393546" => "Bièvres", "87684407" => "Boigneville", "87381079" => "Bois Colombes", "87682203" => "Bois le Roi", "87682518" => "Boissise le Roi", "87381152" => "Boissy l'aillerie", "87113407" => "Bondy", "87415893" => "Bonnières", "87276444" => "Boran sur Oise", "87276485" => "Bouffémont Moisselles", "87382440" => "Bougival", "87543181" => "Boulainvilliers", "87545178" => "Bouray", "87684118" => "Bourron Marlotte Grez", "87682138" => "Boussy Saint-Antoine", "87681478" => "Boutigny", "87545194" => "Brétigny", "87545483" => "Breuillet Bruyères le Châtel", "87545491" => "Breuillet Village", "87381624" => "Breval", "87682120" => "Brunoy", "87276451" => "Bruyères sur Oise", "87681510" => "Buno Gironville", "87382655" => "Cergy le Haut", "87381905" => "Cergy Préfecture", "87382499" => "Cergy Saint-Christophe", "87276063" => "Cernay", "87682161" => "Cesson", "87545152" => "Chamarande", "87276519" => "Champagne sur Oise", "87682450" => "Champagne sur Seine", "87115873" => "Champbenoist Poigny", "87276030" => "Champ de Courses d'Enghien", "87393058" => "Champ de Mars Tour Eiffel", "87116509" => "Changis Saint-Jean", "87381475" => "Chanteloup les Vignes", "87276113" => "Chantilly Gouvieux", "87276162" => "Chaponval", "87381194" => "Chars", "87682419" => "Chartrettes", "87116582" => "Château Thierry", "87758607" => "Châtelet les Halles", "87381228" => "Chaumont en Vexin", "87382333" => "Chaville Rive Droite", "87393207" => "Chaville Rive Gauche", "87393173" => "Chaville Vélizy", "87116111" => "Chelles Gournay", "87546317" => "Chemin d'Antony", "87116574" => "Chézy sur Marne", "87393637" => "Chilly Mazarin", "87545285" => "Choisy le Roi", "87391565" => "Clamart", "87381129" => "Clichy Levallois", "87393272" => "Coignières", "87381087" => "Colombes", "87682146" => "Combs la Ville Quincy", "87272047" => "Compans", "87381459" => "Conflans Fin d'Oise", "87381897" => "Conflans Sainte-Honorine", "87681007" => "Corbeil Essonnes", "87381863" => "Cormeilles en Parisis", "87116731" => "Couilly Saint-Germain", "87116301" => "Coulommiers", "87382200" => "Courbevoie", "87116772" => "Crécy la Chapelle", "87276006" => "Creil", "87271593" => "Crépy en Valois", "87608802" => "Créteil Pompadour", "87116640" => "Crouy sur Ourcq", "87271536" => "Dammartin Juilly Saint-Mard", "87276345" => "Deuil Montmagny", "87276436" => "Domont", "87684233" => "Dordives", "87545525" => "Dourdan", "87540179" => "Dourdan la Forêt", "87271403" => "Drancy", "87393488" => "Dreux", "87276394" => "Ecouen Ezanville", "87545475" => "Egly", "87116046" => "Emerainville Pontault Combault", "87276022" => "Enghien les Bains", "87545228" => "Epinay sur Orge", "87271148" => "Epinay sur Seine", "87271122" => "Epinay Villetaneuse", "87276147" => "Epluches", "87386763" => "Epône Mézières", "87381418" => "Eragny Neuville", "87276055" => "Ermont Eaubonne", "87534131" => "Ermont Eaubonne", "87276584" => "Ermont Halte", "87116327" => "Esbly", "87681601" => "Essonnes Robinson", "87545137" => "Etampes", "87545145" => "Etréchy", "87681387" => "Evry Courcouronnes Centre", "87681361" => "Evry Val de Seine", "87116277" => "Faremoutiers Pommeuse", "87684241" => "Ferrières Fontenay", "87682211" => "Fontainebleau Avon", "87682427" => "Fontaine le Port", "87393405" => "Fontenay le Fleury", "87276071" => "Franconville Le Plessis Bouchard", "87276659" => "Frépillon", "87113514" => "Gagny", "87393439" => "Garancières La Queue", "87382259" => "Garches Marnes la Coquette", "87381566" => "Gargenville", "87276196" => "Garges Sarcelles", "87393348" => "Gazeran", "87271205" => "Gennevilliers", "87381244" => "Gisors", "87276246" => "Goussainville", "87681353" => "Grand Bourg", "87393645" => "Gravigny Balizy", "87116012" => "Gretz Armainvilliers", "87681379" => "Grigny Centre", "87276360" => "Groslay", "87276592" => "Gros Noyer Saint-Prix", "87116269" => "Guérard la Celle sur Morin", "87545129" => "Guillerval", "87281899" => "Haussmann Saint-Lazare", "87381889" => "Herblay", "87682435" => "Héricy", "87393462" => "Houdan", "87386409" => "Houilles Carrières sur Seine", "87393561" => "Igny", "87393033" => "Invalides", "87116616" => "Isles Armentières Congis", "87381574" => "Issou Porcheville", "87393074" => "Issy", "87393306" => "Issy Val de Seine", "87545301" => "Ivry sur Seine", "87393066" => "Javel", "87393512" => "Jouy en Josas", "87545244" => "Juvisy", "87381558" => "Juziers", "87271171" => "La Barre Ormesson", "87276287" => "La Borne Blanche", "87382432" => "La Celle Saint-Cloud", "87271304" => "La Courneuve Aubervilliers", "87758011" => "La Défense Grande Arche", "87681452" => "La Ferté Alais", "87116673" => "La Ferté Milon", "87116517" => "La Ferté sous Jouarre", "87381871" => "La Frette Montigny", "87386003" => "La Garenne Colombes", "87116319" => "Lagny Thorigny", "87682476" => "La Grande Paroisse", "87545459" => "La Norville Saint-Germain lès A.", "87164798" => "La Plaine Stade de France", "87545160" => "Lardy", "87393256" => "La Verrière", "87381202" => "La Villetertre", "87271478" => "Le Blanc Mesnil", "87271395" => "Le Bourget", "87681395" => "Le Bras de Fer Evry Génopole", "87113522" => "Le Chénay Gagny", "87681635" => "Le Coudray Montceau", "87682179" => "Le Mée", "87393298" => "Le Perray", "87271551" => "Le Plessis Belleville", "87681627" => "Le Plessis Chenet", "87113472" => "Le Raincy Villemomble Montfermeil", "87492108" => "Les Ardoines", "87113779" => "Les Boullereaux Champigny", "87386664" => "Les Clairières de Verneuil", "87393280" => "Les Essarts le Roi", "87272146" => "Les Grésillons", "87386680" => "Les Mureaux", "87276238" => "Les Noues", "87546226" => "Les Saules", "87381095" => "Le Stade", "87386300" => "Les Vallées", "87113803" => "Les Yvris Noisy le Grand", "87382473" => "L'Etang la Ville", "87382366" => "Le Val d'Or", "87681247" => "Le Vert de Maisons", "87381210" => "Liancourt Saint-Pierre", "87682153" => "Lieusaint Moissy", "87381582" => "Limay", "87276527" => "L'Isle Adam Parmain", "87682401" => "Livry sur Seine", "87116632" => "Lizy sur Ourcq", "87393611" => "Longjumeau", "87116137" => "Longueville", "87382457" => "Louveciennes", "87276253" => "Louvres", "87276576" => "Luzarches", "87281873" => "Magenta", "87681155" => "Maisons Alfort Alfortville", "87386425" => "Maisons Laffitte", "87681486" => "Maisse", "87684415" => "Malesherbes", "87381509" => "Mantes la Jolie", "87381590" => "Mantes Station", "87393470" => "Marchezais Broué", "87382812" => "Mareil Marly", "87381715" => "Mareil sur Mauldre", "87116665" => "Mareuil sur Ourcq", "87116228" => "Marles en Brie", "87382465" => "Marly le Roi", "87545186" => "Marolles en Hurepoix", "87393579" => "Massy Palaiseau", "87383281" => "Massy Verrières", "87381723" => "Maule", "87381483" => "Maurecourt", "87116103" => "Meaux", "87682005" => "Melun", "87381616" => "Menerville", "87681411" => "Mennecy", "87276675" => "Mériel", "87276667" => "Méry sur Oise", "87393108" => "Meudon", "87393082" => "Meudon Val Fleury", "87381830" => "Meulan Hardricourt", "87271528" => "Mitry Claye", "87545111" => "Monnerville", "87684001" => "Montargis", "87682302" => "Montereau", "87393892" => "Montfort l'Amaury Méré", "87682104" => "Montgeron Crosne", "87381160" => "Montgeroult Courcelles", "87276089" => "Montigny Beauchamp", "87684100" => "Montigny sur Loing", "87382879" => "Montreuil", "87116400" => "Montry Condé", "87276493" => "Montsoult Maffliers", "87682278" => "Moret Veneux les Sablons", "87116087" => "Mormant", "87116244" => "Mortcerf", "87681403" => "Moulin Galant", "87116285" => "Mouroux", "87547307" => "Musée d'Orsay", "87116095" => "Nangis", "87386318" => "Nanterre Université", "87271577" => "Nanteuil le Haudouin", "87116558" => "Nanteuil Saâcy", "87684126" => "Nemours Saint-Pierre", "87381020" => "Neuilly Porte Maillot", "87334482" => "Neuville Université", "87381731" => "Nezel Aulnay", "87116566" => "Nogent l'Artaud Charly", "87113746" => "Nogent Le Perreux", "87276758" => "Nointel Mours", "87393876" => "Noisy le Roi", "87113217" => "Noisy le Sec", "87681346" => "Orangis Bois de l'Epine", "87393447" => "Orgerus Béhoust", "87546200" => "Orly Ville", "87271585" => "Ormoy Villers", "87276279" => "Orry la Ville Coye la Forêt", "87381145" => "Osny", "87116020" => "Ozoir la Ferrière", "87113209" => "Pantin", "87271486" => "Parc des Expositions", "87547026" => "Paris Austerlitz", "87547000" => "Paris Austerlitz", "87686667" => "Paris Bercy", "87113001" => "Paris Est", "87686006" => "Paris Gare de Lyon", "87758581" => "Paris Gare de Lyon", "87391003" => "Paris Montparnasse", "87271007" => "Paris Nord", "87271031" => "Paris Nord", "87271023" => "Paris Nord", "87384008" => "Paris Saint-Lazare", "87391102" => "Paris Vaugirard", "87381012" => "Péreire Levallois", "87276469" => "Persan Beaumont", "87393504" => "Petit Jouy Les Loges", "87393652" => "Petit Vaux", "87271163" => "Pierrefitte Stains", "87276097" => "Pierrelaye", "87393421" => "Plaisir Grignon", "87393629" => "Plaisir les Clayes", "87386573" => "Poissy", "87381111" => "Pont Cardinet", "87393041" => "Pont de l'Alma", "87546192" => "Pont de Rungis Aéroport d'Orly", "87393322" => "Pont du Garigliano", "87682526" => "Ponthierry Pringy", "87276139" => "Pontoise", "87276154" => "Pont Petit", "87393165" => "Porchefontaine", "87111278" => "Porte de Clichy", "87415679" => "Port-Villez", "87276410" => "Précy sur Oise", "87276501" => "Presles Courcelles", "87116160" => "Provins", "87382382" => "Puteaux", "87393314" => "Rambouillet", "87681338" => "Ris Orangis", "87116038" => "Roissy en Brie", "87654798" => "Rosa Parks", "87113696" => "Rosny Bois Perrier", "87113704" => "Rosny sous Bois", "87415885" => "Rosny sur Seine", "87546291" => "Rungis La Fraternelle", "87545509" => "Saint-Chéron", "87382358" => "Saint-Cloud", "87393223" => "Saint-Cyr", "87271015" => "Saint-Denis", "87116178" => "Sainte-Colombe Septveilles", "87545210" => "Sainte-Geneviève des Bois", "87682542" => "Saint-Fargeau", "87366922" => "Saint-Germain en Laye Bel Air Fourqueux", "87382804" => "Saint Germain en Laye GC", "87276170" => "Saint-Gratien", "87276402" => "Saint-Leu d'Esserent", "87276600" => "Saint-Leu la Forêt", "87682294" => "Saint-Mammès", "87545350" => "Saint-Martin d'Etampes", "87547315" => "Saint-Michel Notre Dame", "87545202" => "Saint-Michel sur Orge", "87382481" => "Saint-Nom la Bretèche F. de Marly", "87271247" => "Saint-Ouen", "87276105" => "Saint-Ouen l'Aumône", "87337980" => "Saint-Ouen l'Aumône Liesse", "87381426" => "Saint-Ouen l'Aumône Quartier de l'Eglise", "87393843" => "Saint-Quentin en Y. Montigny le B.", "87276188" => "Sannois", "87381186" => "Santeuil le Perchay", "87276386" => "Sarcelles Saint-Brice", "87386417" => "Sartrouville", "87682187" => "Savigny le Temple Nandy", "87545236" => "Savigny sur Orge", "87545517" => "Sermaise", "87272039" => "Seugy", "87271445" => "Sevran Beaudottes", "87271429" => "Sevran Livry", "87393124" => "Sèvres Rive gauche", "87382341" => "Sèvres Ville d'Avray", "87684217" => "Souppes Château Landon", "87164780" => "Stade de France Saint-Denis", "87382374" => "Suresnes Mont Valérien", "87276261" => "Survilliers Fosses", "87393454" => "Tacoignières Richebourg", "87276634" => "Taverny", "87272054" => "Thieux Nantouillet", "87682252" => "Thomery", "87381822" => "Thun le Paradis", "87116210" => "Tournan", "87393231" => "Trappes", "87381236" => "Trie Château", "87381806" => "Triel sur Seine", "87116491" => "Trilport", "87381178" => "Us", "87116293" => "Vaires Torcy", "87381798" => "Val d'Argenteuil", "87113712" => "Val de Fontenay", "87276535" => "Valmondois", "87391532" => "Vanves Malakoff", "87393538" => "Vauboyen", "87276626" => "Vaucelles", "87382267" => "Vaucresson", "87381814" => "Vaux sur Seine", "87116079" => "Verneuil l'Etang", "87386656" => "Vernouillet Verneuil", "87682468" => "Vernou sur Seine", "87393009" => "Versailles Chantiers", "87393157" => "Versailles Château Rive Gauche", "87382861" => "Versailles Rive Droite", "87271437" => "Vert Galant", "87276568" => "Viarmes", "87681304" => "Vigneux sur Seine", "87681619" => "Villabé", "87272021" => "Villaines", "87683102" => "Villeneuve la Guyard", "87545277" => "Villeneuve le Roi", "87681825" => "Villeneuve Saint-Georges", "87681809" => "Villeneuve Triage", "87386649" => "Villennes sur Seine", "87271510" => "Villeparisis Mitry le Neuf", "87271452" => "Villepinte", "87393413" => "Villepreux les Clayes", "87276220" => "Villiers le Bel Gonesse Arnouville", "87116749" => "Villiers Montbarbin", "87393884" => "Villiers Neauphle Pontchartrain", "87113795" => "Villiers sur Marne Le Plessis Trévise", "87382887" => "Viroflay Rive Droite", "87393215" => "Viroflay Rive Gauche", "87681312" => "Viry Châtillon", "87545293" => "Vitry sur Seine", "87682500" => "Vosves", "87682443" => "Vulaines sur Seine Samoreau", "87682112" => "Yerres" }
+
+SCHEDULER.every '60s', :first_in => 0 do |job|
+
+    uri = "http://api.transilien.com/gare/"+Departure_Station+"/depart/"+Arrival_Station+"/"  
+
+    source = open(uri, http_basic_authentication: [API_USERNAME, API_PASSWORD]).read() 
+    doc = Nokogiri::XML.parse(source)  
+    
+    transilien_next_trains = Array.new
+    
+    doc.xpath('//train').each do |train_info|
+    
+      # substring to prevent accent problem 
+      case train_info.xpath('etat').text[0..5]   
+        when ""         
+          train_state="<font color=\"white\">Planned / On Time</font>" 
+        when "Retard"
+          train_state="<font color=\"#D69152\">** Delayed **</font>"
+        when "Suppri"
+          train_state="<font color=\"#E77763\">** Cancelled **</font>"
+      else   
+        train_state="** Unknown **" 
+      end
+    
+      train_time=train_info.xpath('date').text[11..16]
+      train_code=train_info.xpath('miss').text
+      train_number=train_info.xpath('num').text
+
+      # Max station name length tested for single line display = 32 chars. Can more ?
+      # arrival_station_name=stations[train_info.xpath('term').text][0..31]
+      arrival_station_name=stations[train_info.xpath('term').text]
+      if arrival_station_name.length > 32
+         arrival_station_name=arrival_station_name[0..31]+"..."
+      end
+      train_time_type="("+train_info.xpath('date/@mode').to_s+")"
+      
+      # Add data to list
+      transilien_next_trains.push({ code: train_code, time: train_time, destination: arrival_station_name, state: train_state, time_type: train_time_type })
+      
+    end
+
+    # Fill with blank rows if not enough data received from API to prevent bad rendering
+    if transilien_next_trains.count < 7
+        while transilien_next_trains.count < 7	
+            transilien_next_trains.push({ code: "", time: "", destination: "", state: "", time_type: "" })	
+        end
+    end
+
+    # Uncomment 2 lines below for standard output debugging (start server without "-d")
+    # puts "Next Train(s) from "+stations[Departure_Station]+" to "+ stations[Arrival_Station] + " :"
+    # puts transilien_next_trains[0..6] 
+    
+    # Send 7 trains data to widget
+    send_event('transilien_next_trains', { items: transilien_next_trains[0..6] }) 
+end
+
